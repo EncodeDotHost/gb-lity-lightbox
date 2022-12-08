@@ -22,11 +22,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 function gb_enqueue_lily(){
   wp_enqueue_style('lity-styles', plugin_dir_url( __FILE__ ). 'assets/css/lity.min.css', array(), '2.4.1', 'all');
   wp_enqueue_script( 'lity-script', plugin_dir_url( __FILE__ ). 'assets/js/lity.min.js', array(), '2.4.1', true );
+  wp_enqueue_script( 'lity-youtube-script', plugin_dir_url( __FILE__ ). 'assets/js/youtube.min.js', array(), '2.4.1', true );
+  wp_enqueue_script( 'lity-vimeo-script', plugin_dir_url( __FILE__ ). 'assets/js/vimeo.min.js', array(), '2.4.1', true );
+  wp_enqueue_script( 'lity-googlemaps-script', plugin_dir_url( __FILE__ ). 'assets/js/googlemaps.min.js', array(), '2.4.1', true );
 }
 add_action( 'wp_enqueue_scripts', 'gb_enqueue_lily', 100 );
 
 add_filter( 'render_block', function( $block_content, $block ) {
-  if ( !is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'add-data-lity' ) !== false ) {
+  if ( !is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'gb-lity-lightbox' ) !== false ) {
   $myreplace1 = '<a';
   $myinsert1 = '<a data-lity';
       $block_content = str_replace( $myreplace1, $myinsert1 , $block_content );
